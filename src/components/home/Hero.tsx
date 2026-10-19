@@ -18,9 +18,9 @@ export function Hero({ image }: { image: PublicImage }) {
       )}
       <div className={`container ${styles.heroInner}`}>
         <h1>
-          Цэвэрхэн гэр.
+          Цэвэрлэгээг бидэнд.
           <br />
-          <span>Тайван амьдрал.</span>
+          <span>Чөлөөт цагаа өөртөө.</span>
         </h1>
         <p className={styles.heroLead}>Хивс, буйдан, матрас, сандлын цэвэрлэгээ</p>
         <div className={styles.heroActions}>
