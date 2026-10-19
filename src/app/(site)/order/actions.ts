@@ -99,6 +99,11 @@ export async function startVerificationAction(phoneInput: string): Promise<Start
   });
   if (blocked) return { ok: false, error: blocked };
 
+  // Хязгаарлалт нэг цагийн цонхтой тул 2 хоногоос хуучныг хадгалах шаардлагагүй.
+  await db.phoneVerification.deleteMany({
+    where: { createdAt: { lt: new Date(Date.now() - 48 * HOUR_MS) } },
+  });
+
   const code = generateCode();
   const verifier = phoneVerifier();
   const session = await verifier.createSession(phone, code).catch((err) => {

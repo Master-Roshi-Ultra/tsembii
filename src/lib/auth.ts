@@ -21,6 +21,7 @@ export const can = (admin: CurrentAdmin, permission: Permission) =>
 export async function startSession(adminId: string) {
   const token = randomBytes(32).toString('base64url');
   const expiresAt = new Date(Date.now() + SESSION_HOURS * 60 * 60 * 1000);
+  await db.adminSession.deleteMany({ where: { expiresAt: { lt: new Date() } } });
   await db.adminSession.create({ data: { id: hashToken(token), adminId, expiresAt } });
   (await cookies()).set(SESSION_COOKIE, token, {
     httpOnly: true,
