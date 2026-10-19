@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className={`container ${styles.footerInner}`}>
         <div className={styles.footerTop}>
           <div className={styles.footerBrand}>
-            <Logo size="lg" />
+            <Logo size="lg" showName />
             <p>Хивс, буйдан, матрас, сандлын цэвэрлэгээ.</p>
           </div>
           <nav aria-label="Хөлийн цэс" className={styles.footerNav}>

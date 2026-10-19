@@ -16,9 +16,6 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <a href="#services" className="btn btn-gold btn-sm">
-          Захиалах <span aria-hidden="true">→</span>
-        </a>
       </div>
     </header>
   );

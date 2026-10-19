@@ -1,11 +1,17 @@
 import styles from './Logo.module.css';
 
-/** Дугуй тэмдэг + «Цэмбий» бичиг. Тэмдэг жижиг үед доторх бичиг уншигдахгүй тул нэрийг хажууд нь бичнэ. */
-export function Logo({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
+/** Дугуй тэмдэг, хүсвэл хажууд нь «Цэмбий» бичиг */
+export function Logo({
+  size = 'sm',
+  showName = false,
+}: {
+  size?: 'sm' | 'lg';
+  showName?: boolean;
+}) {
   return (
     <span className={`${styles.logo} ${styles[size]}`}>
       <img src="/logo.webp" alt="" width={320} height={320} className={styles.mark} />
-      <span className={styles.name}>Цэмбий</span>
+      {showName && <span className={styles.name}>Цэмбий</span>}
     </span>
   );
 }
