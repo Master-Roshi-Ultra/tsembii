@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Golos_Text, Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
+import { getDictionary, getLocale } from '@/i18n';
 import './globals.css';
 
 // Монгол кирилл (Ө, Ү) нь cyrillic-ext-д багтана.
@@ -18,17 +19,17 @@ const golos = Golos_Text({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'Цэмбий — хивс, буйдан, матрас, сандал цэвэрлэгээ',
-  description:
-    'Хивс, буйдан, матрас, сандлын цэвэрлэгээ. Үйлчилгээгээ сагслаад хүсэлт илгээнэ үү — бид холбогдож үнэ, цагийг тохирно.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = await getDictionary();
+  return { title: meta.title, description: meta.description };
+}
 
 export const viewport: Viewport = { themeColor: '#000000' };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const locale = await getLocale();
   return (
-    <html lang="mn" className={`${inter.variable} ${golos.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${golos.variable}`}>
       <body>{children}</body>
     </html>
   );

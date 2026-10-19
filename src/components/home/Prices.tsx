@@ -1,30 +1,28 @@
-import { formatPrice, UNIT_LABELS } from '@/lib/money';
+import { getDictionary } from '@/i18n';
+import { formatPrice } from '@/lib/money';
 import type { PublicService } from '@/lib/public-data';
 import styles from './home.module.css';
 import { Section } from './Section';
 
-export function Prices({ services }: { services: PublicService[] }) {
+export async function Prices({ services }: { services: PublicService[] }) {
   if (!services.length) return null;
+  const t = await getDictionary();
   return (
-    <Section
-      id="prices"
-      title="Үнийн мэдээлэл"
-      lead="Урьдчилсан үнэ. Эцсийн үнийг ажилтан холбогдож тохирно."
-    >
+    <Section id="prices" title={t.prices.title} lead={t.prices.lead}>
       <table className={styles.priceTable}>
         <thead>
           <tr>
-            <th scope="col">Үйлчилгээ</th>
-            <th scope="col">Нэгж</th>
-            <th scope="col">Үнэ</th>
+            <th scope="col">{t.prices.service}</th>
+            <th scope="col">{t.prices.unit}</th>
+            <th scope="col">{t.prices.price}</th>
           </tr>
         </thead>
         <tbody>
           {services.map((service) => (
             <tr key={service.id}>
               <td>{service.name}</td>
-              <td>{UNIT_LABELS[service.unit]}</td>
-              <td>{formatPrice(service.price)}</td>
+              <td>{t.units[service.unit]}</td>
+              <td>{service.price === null ? t.prices.onRequest : formatPrice(service.price)}</td>
             </tr>
           ))}
         </tbody>

@@ -1,17 +1,13 @@
+import { getDictionary } from '@/i18n';
 import styles from './home.module.css';
 import { Section } from './Section';
 
-const STEPS = [
-  { title: 'Үйлчилгээ сагслах', text: 'Хэрэгтэй үйлчилгээ, хэмжээгээ сонгоно.' },
-  { title: 'Утсаа батлах', text: 'Дугаараасаа Verify.mn руу SMS илгээж баталгаажуулна.' },
-  { title: 'Хаягаа оруулж илгээх', text: 'Бид холбогдож үнэ, цагийг тохирно.' },
-];
-
-export function OrderSteps() {
+export async function OrderSteps() {
+  const t = await getDictionary();
   return (
-    <Section id="steps" title="Хэрхэн захиалах вэ" dark>
+    <Section id="steps" title={t.steps.title} dark>
       <ol className={styles.steps}>
-        {STEPS.map((step, i) => (
+        {t.steps.items.map((step, i) => (
           <li key={step.title}>
             <span className={styles.stepNumber} aria-hidden="true">
               {String(i + 1).padStart(2, '0')}

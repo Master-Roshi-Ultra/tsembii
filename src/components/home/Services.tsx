@@ -1,12 +1,14 @@
 import { Picture } from '@/components/ui/Picture';
-import { formatPrice, UNIT_LABELS } from '@/lib/money';
+import { getDictionary } from '@/i18n';
+import { formatPrice } from '@/lib/money';
 import type { PublicService } from '@/lib/public-data';
 import styles from './home.module.css';
 import { Section } from './Section';
 
-export function Services({ services }: { services: PublicService[] }) {
+export async function Services({ services }: { services: PublicService[] }) {
+  const t = await getDictionary();
   return (
-    <Section id="services" title="Үйлчилгээ" lead="Нэг буюу хэд хэдэн үйлчилгээ сонгож болно.">
+    <Section id="services" title={t.services.title} lead={t.services.lead}>
       {services.length ? (
         <ul className={styles.serviceGrid}>
           {services.map((service) => (
@@ -16,9 +18,13 @@ export function Services({ services }: { services: PublicService[] }) {
                 <h3>{service.name}</h3>
                 {service.description && <p className="muted">{service.description}</p>}
                 <p className={styles.servicePrice}>
-                  {formatPrice(service.price)}
-                  {service.price !== null && (
-                    <span className="muted"> / {UNIT_LABELS[service.unit]}</span>
+                  {service.price === null ? (
+                    t.prices.onRequest
+                  ) : (
+                    <>
+                      {formatPrice(service.price)}
+                      <span className="muted"> / {t.units[service.unit]}</span>
+                    </>
                   )}
                 </p>
               </div>
@@ -26,7 +32,7 @@ export function Services({ services }: { services: PublicService[] }) {
           ))}
         </ul>
       ) : (
-        <p className={styles.empty}>Үйлчилгээ удахгүй нэмэгдэнэ.</p>
+        <p className={styles.empty}>{t.services.empty}</p>
       )}
     </Section>
   );

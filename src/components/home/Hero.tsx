@@ -1,9 +1,11 @@
+import { getDictionary } from '@/i18n';
 import { imageUrl } from '@/lib/images';
 import type { PublicImage } from '@/lib/public-data';
 import styles from './home.module.css';
 
 /** Зурган дэвсгэр + бараан сүүдэр; зураг ороогүй үед бараан дэвсгэр хэвээр харагдана. */
-export function Hero({ image }: { image: PublicImage }) {
+export async function Hero({ image }: { image: PublicImage }) {
+  const t = await getDictionary();
   return (
     <section id="top" className={styles.hero}>
       {image && (
@@ -18,22 +20,20 @@ export function Hero({ image }: { image: PublicImage }) {
       )}
       <div className={`container ${styles.heroInner}`}>
         <h1>
-          Цэвэрлэгээг бидэнд.
+          {t.hero.title}
           <br />
-          <span>Чөлөөт цагаа өөртөө.</span>
+          <span>{t.hero.accent}</span>
         </h1>
-        <p className={styles.heroLead}>Хивс, буйдан, матрас, сандлын цэвэрлэгээ</p>
+        <p className={styles.heroLead}>{t.hero.lead}</p>
         <div className={styles.heroActions}>
           <a href="#services" className="btn btn-light">
-            Үйлчилгээгээ сонгох <span aria-hidden="true">→</span>
+            {t.hero.cta} <span aria-hidden="true">→</span>
           </a>
           <a href="#prices" className="btn btn-outline-light">
-            Үнэ харах
+            {t.hero.prices}
           </a>
         </div>
-        <p className={styles.heroNote}>
-          Үнийг урьдчилан харна <span aria-hidden="true">•</span> Онлайнаар хүсэлт илгээнэ
-        </p>
+        <p className={styles.heroNote}>{t.hero.note.join(' • ')}</p>
       </div>
     </section>
   );

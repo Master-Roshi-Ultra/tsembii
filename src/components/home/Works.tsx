@@ -1,23 +1,25 @@
 import { Picture } from '@/components/ui/Picture';
+import { getDictionary } from '@/i18n';
 import type { PublicWork } from '@/lib/public-data';
 import styles from './home.module.css';
 import { Section } from './Section';
 
-export function Works({ works }: { works: PublicWork[] }) {
+export async function Works({ works }: { works: PublicWork[] }) {
+  const t = await getDictionary();
   return (
-    <Section id="works" title="Ажлын үр дүн" lead="Бидний хийсэн ажлын өмнөх ба дараах зураг.">
+    <Section id="works" title={t.works.title} lead={t.works.lead}>
       {works.length ? (
         <ul className={styles.workList}>
           {works.map((work) => (
             <li key={work.id} className={styles.workCard}>
               <div className={styles.workPair}>
                 <figure>
-                  <Picture image={work.beforeImage} alt={`${work.title} — өмнө`} />
-                  <figcaption className={styles.before}>Өмнө</figcaption>
+                  <Picture image={work.beforeImage} alt={`${work.title} — ${t.works.before}`} />
+                  <figcaption className={styles.before}>{t.works.before}</figcaption>
                 </figure>
                 <figure>
-                  <Picture image={work.afterImage} alt={`${work.title} — дараа`} />
-                  <figcaption className={styles.after}>Дараа</figcaption>
+                  <Picture image={work.afterImage} alt={`${work.title} — ${t.works.after}`} />
+                  <figcaption className={styles.after}>{t.works.after}</figcaption>
                 </figure>
               </div>
               <h3>{work.title}</h3>
@@ -25,7 +27,7 @@ export function Works({ works }: { works: PublicWork[] }) {
           ))}
         </ul>
       ) : (
-        <p className={styles.empty}>Ажлын зураг удахгүй нэмэгдэнэ.</p>
+        <p className={styles.empty}>{t.works.empty}</p>
       )}
     </Section>
   );

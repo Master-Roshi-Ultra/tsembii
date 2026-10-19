@@ -1,15 +1,16 @@
-/** Толгой ба хөлийн цэс: нүүрний хэсгүүд рүү шилжинэ (дотоод хуудаснаас ч ажиллана) */
+/** Толгой ба хөлийн цэс: нүүрний хэсгүүд рүү шилжинэ (дотоод хуудаснаас ч ажиллана). Нэр нь `t.nav[key]`. */
 export const NAV = [
-  { href: '/#services', label: 'Үйлчилгээ' },
-  { href: '/#prices', label: 'Үнэ' },
-  { href: '/#works', label: 'Ажлын үр дүн' },
-  { href: '/#contact', label: 'Холбоо барих' },
-];
+  { href: '/#services', key: 'services' },
+  { href: '/#prices', key: 'prices' },
+  { href: '/#works', key: 'works' },
+  { href: '/#contact', key: 'contact' },
+] as const;
 
+/** Нэр нь `t.legal[key].title` */
 export const LEGAL_LINKS = [
-  { href: '/privacy', label: 'Нууцлалын бодлого' },
-  { href: '/terms', label: 'Үйлчилгээний нөхцөл' },
-];
+  { href: '/privacy', key: 'privacy' },
+  { href: '/terms', key: 'terms' },
+] as const;
 
 /** Сошиал хуудсууд; холбоос хоосон бол хөлд харагдахгүй. */
 export const SOCIAL_LINKS = [

@@ -80,10 +80,35 @@
 .bottomLinks {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-2) var(--space-6);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+}
+
+.languages {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.languages button {
+  min-width: 36px;
+  min-height: 32px;
+  padding: 0 var(--space-2);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-on-dark-muted);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.languages button:hover,
+.languages button[aria-pressed='true'] {
+  color: var(--color-on-dark);
+}
+
+.languages button[aria-pressed='true'] {
+  background: var(--color-dark-line);
 }
 
 .bottom a {

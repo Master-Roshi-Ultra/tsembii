@@ -1,15 +1,17 @@
+import { getDictionary } from '@/i18n';
 import { type PublicSettings, telHref } from '@/lib/public-data';
 import styles from './home.module.css';
 import { Section } from './Section';
 
-export function Contact({ settings }: { settings: PublicSettings | null }) {
+export async function Contact({ settings }: { settings: PublicSettings | null }) {
+  const t = await getDictionary();
   return (
-    <Section id="contact" title="Холбоо барих">
+    <Section id="contact" title={t.contact.title}>
       <div className={styles.contact}>
         <dl className={styles.contactList}>
           {settings?.phones.length ? (
             <div>
-              <dt>Утас</dt>
+              <dt>{t.contact.phone}</dt>
               <dd>
                 {settings.phones.map((phone) => (
                   <a key={phone} href={telHref(phone)}>
@@ -21,20 +23,20 @@ export function Contact({ settings }: { settings: PublicSettings | null }) {
           ) : null}
           {settings?.hours && (
             <div>
-              <dt>Ажлын цаг</dt>
+              <dt>{t.contact.hours}</dt>
               <dd>{settings.hours}</dd>
             </div>
           )}
           {settings?.area && (
             <div>
-              <dt>Үйлчлэх бүс</dt>
+              <dt>{t.contact.area}</dt>
               <dd>{settings.area}</dd>
             </div>
           )}
         </dl>
         <div>
           <a href="#services" className="btn">
-            Захиалга үргэлжлүүлэх
+            {t.contact.cta}
           </a>
         </div>
       </div>

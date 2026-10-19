@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
+import { getDictionary } from '@/i18n';
 import { telHref } from '@/lib/public-data';
+import { LanguageSwitch } from './LanguageSwitch';
 import styles from './SiteFooter.module.css';
 import { BUILDER, LEGAL_LINKS, NAV, SOCIAL_LINKS } from './nav';
 
@@ -45,14 +47,15 @@ const PhoneIcon = () => (
   </svg>
 );
 
-export function SiteFooter({ phones, services }: { phones: string[]; services: string[] }) {
+export async function SiteFooter({ phones, services }: { phones: string[]; services: string[] }) {
+  const t = await getDictionary();
   return (
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.top}>
           <div className={styles.brand}>
             <Logo showName />
-            <p>Хивс, буйдан, матрас, сандлын цэвэрлэгээ — сагслаад хүсэлтээ илгээнэ үү.</p>
+            <p>{t.footer.tagline}</p>
             {phones.length > 0 && (
               <ul className={styles.contacts}>
                 {phones.map((phone) => (
@@ -67,27 +70,31 @@ export function SiteFooter({ phones, services }: { phones: string[]; services: s
             )}
           </div>
           <FooterColumn
-            title="Үйлчилгээ"
+            title={t.footer.services}
             links={services.map((name) => ({ href: '/#services', label: name }))}
           />
-          <FooterColumn title="Цэс" links={NAV} />
           <FooterColumn
-            title="Сошиал"
+            title={t.footer.menu}
+            links={NAV.map((item) => ({ href: item.href, label: t.nav[item.key] }))}
+          />
+          <FooterColumn
+            title={t.footer.social}
             links={SOCIAL_LINKS.map((link) => ({ ...link, external: true }))}
           />
         </div>
         <div className={styles.bottom}>
-          <p>© {new Date().getFullYear()} Цэмбий. Бүх эрх хуулиар хамгаалагдсан.</p>
-          <ul className={styles.bottomLinks}>
+          <p>
+            © {new Date().getFullYear()} {t.footer.rights}
+          </p>
+          <div className={styles.bottomLinks}>
+            <LanguageSwitch />
             {LEGAL_LINKS.map((link) => (
-              <li key={link.href}>
-                <FooterLinkItem {...link} />
-              </li>
+              <FooterLinkItem key={link.href} href={link.href} label={t.legal[link.key].title} />
             ))}
-            <li>
-              Powered by <FooterLinkItem {...BUILDER} external />
-            </li>
-          </ul>
+            <span>
+              {t.footer.poweredBy} <FooterLinkItem {...BUILDER} external />
+            </span>
+          </div>
         </div>
       </div>
     </footer>

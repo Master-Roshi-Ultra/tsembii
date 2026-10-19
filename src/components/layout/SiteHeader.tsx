@@ -1,19 +1,21 @@
 import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
+import { getDictionary } from '@/i18n';
 import styles from './SiteHeader.module.css';
 import { NAV } from './nav';
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const t = await getDictionary();
   return (
     <header className={styles.header}>
       <div className={`container ${styles.headerInner}`}>
-        <Link href="/#top" className={styles.logoLink} aria-label="Цэмбий — нүүр">
+        <Link href="/#top" className={styles.logoLink} aria-label={t.nav.home}>
           <Logo />
         </Link>
-        <nav aria-label="Үндсэн цэс" className={styles.nav}>
+        <nav aria-label={t.nav.label} className={styles.nav}>
           {NAV.map((item) => (
             <Link key={item.href} href={item.href}>
-              {item.label}
+              {t.nav[item.key]}
             </Link>
           ))}
         </nav>
