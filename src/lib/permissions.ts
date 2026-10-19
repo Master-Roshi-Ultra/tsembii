@@ -8,7 +8,7 @@ export const PERMISSIONS = [
 
 export const PERMISSION_LABELS: Record<Permission, string> = {
   ORDERS: 'Захиалга',
-  CATALOG: 'Үйлчилгээ ба ажлын зураг',
+  CATALOG: 'Үйлчилгээ, ажлын зураг, reels',
   SETTINGS: 'Тохиргоо',
 };
 
@@ -19,4 +19,5 @@ export const ADMIN_NAV: { href: string; label: string; permission: Permission | 
   { href: '/admin/works', label: 'Ажлын үр дүн', permission: 'CATALOG' },
   { href: '/admin/settings', label: 'Тохиргоо', permission: 'SETTINGS' },
   { href: '/admin/admins', label: 'Админууд', permission: 'OWNER' },
+  { href: '/admin/reels', label: 'Reels', permission: 'CATALOG' },
 ];
