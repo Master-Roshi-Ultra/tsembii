@@ -367,53 +367,6 @@
   text-underline-offset: 4px;
 }
 
-/* ── Хөл (бараан) ── */
-.footer {
-  padding: var(--space-12) 0 var(--space-6);
-  background: var(--color-dark);
-  color: var(--color-on-dark-muted);
-  font-size: 0.9375rem;
-}
-
-.footerInner {
-  display: grid;
-  gap: var(--space-8);
-}
-
-.footerTop {
-  display: grid;
-  gap: var(--space-6);
-}
-
-.footerBrand {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.footerNav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-6);
-}
-
-.footerNav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  color: var(--color-on-dark);
-  text-decoration: none;
-}
-
-.footerNav a:hover {
-  color: var(--color-gold-bright);
-}
-
-.copyright {
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--color-dark-line);
-  font-size: 0.8125rem;
-}
-
 /* ── Компьютер ── */
 @media (min-width: 768px) {
   .nav {
@@ -468,10 +421,5 @@
     grid-template-columns: repeat(3, auto);
     justify-content: start;
     gap: var(--space-12);
-  }
-
-  .footerTop {
-    grid-template-columns: 1fr auto;
-    align-items: center;
   }
 }

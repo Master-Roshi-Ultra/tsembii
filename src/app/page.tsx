@@ -24,7 +24,7 @@ export default async function HomePage() {
         <OrderSteps />
         <Contact settings={settings} />
       </main>
-      <SiteFooter />
+      <SiteFooter phones={settings?.phones ?? []} services={services.map((s) => s.name)} />
     </>
   );
 }

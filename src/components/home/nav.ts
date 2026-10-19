@@ -5,3 +5,10 @@ export const NAV = [
   { href: '#works', label: 'Ажлын үр дүн' },
   { href: '#contact', label: 'Холбоо барих' },
 ];
+
+/** Сошиал хуудсууд; холбоос хоосон бол хөлд харагдахгүй. */
+export const SOCIAL_LINKS = [
+  { label: 'Facebook', href: '' },
+  { label: 'Instagram', href: '' },
+  { label: 'Messenger', href: '' },
+].filter((link) => link.href);
