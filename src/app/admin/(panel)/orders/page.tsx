@@ -85,6 +85,9 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
                 <th scope="col">Хаяг</th>
                 <th scope="col">Дүн</th>
                 <th scope="col">Төлөв</th>
+                <th scope="col">
+                  <span className="sr-only">Үйлдэл</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -104,6 +107,14 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
                     <span className={`badge ${styles[`status${order.status}`]}`}>
                       {STATUS_LABELS[order.status]}
                     </span>
+                  </td>
+                  <td>
+                    <Link
+                      href={`/admin/orders/${order.number}`}
+                      className="btn btn-secondary btn-small"
+                    >
+                      Дэлгэрэнгүй
+                    </Link>
                   </td>
                 </tr>
               ))}

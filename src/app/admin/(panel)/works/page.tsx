@@ -4,12 +4,15 @@ import { PageHeader } from '@/components/admin/PageHeader';
 import { ActionForm, SubmitButton } from '@/components/ui/ActionForm';
 import { CheckboxField, Field } from '@/components/ui/Field';
 import { requireAdmin } from '@/lib/auth';
+import { formatDate, toDateInput, ubToday } from '@/lib/dates';
 import { db } from '@/lib/db';
 import { createWorkAction, deleteWorkAction, updateWorkAction } from './actions';
 
 type EditableWork = {
   id: string;
   title: string;
+  doneOn: Date;
+  location: string;
   sortOrder: number;
   isVisible: boolean;
   beforeImage: { key: string };
@@ -29,6 +32,26 @@ function WorkFields({ work }: { work?: EditableWork }) {
           defaultValue={work?.title}
           required
           maxLength={120}
+        />
+      </div>
+      <div className="row">
+        <Field
+          label="Ажил хийсэн огноо"
+          name="doneOn"
+          id={id('doneOn')}
+          type="date"
+          max={ubToday()}
+          defaultValue={work ? toDateInput(work.doneOn) : ubToday()}
+          required
+        />
+        <Field
+          label="Байршил"
+          name="location"
+          id={id('location')}
+          placeholder="Баянзүрх дүүрэг"
+          defaultValue={work?.location}
+          required
+          maxLength={80}
         />
         <Field
           label="Дараалал (бага нь эхэнд)"
@@ -72,6 +95,8 @@ export default async function AdminWorksPage() {
     select: {
       id: true,
       title: true,
+      doneOn: true,
+      location: true,
       sortOrder: true,
       isVisible: true,
       beforeImage: { select: { key: true } },
@@ -89,6 +114,9 @@ export default async function AdminWorksPage() {
         <details key={work.id} className="card">
           <summary>
             <strong>{work.title}</strong>
+            <span className="muted">
+              {formatDate(work.doneOn)} · {work.location || 'байршилгүй'}
+            </span>
             {!work.isVisible && <span className="badge">Нуусан</span>}
           </summary>
           <div className="stack">

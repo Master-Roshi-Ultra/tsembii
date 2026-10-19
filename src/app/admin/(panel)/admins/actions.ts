@@ -4,16 +4,18 @@ import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { checkbox, type FormState, FormError, handleForm, oneOf, text } from '@/lib/form';
-import { hashPassword } from '@/lib/password';
+import { hashPassword, MIN_PASSWORD } from '@/lib/password';
 import { PERMISSIONS } from '@/lib/permissions';
 
 const PATH = '/admin/admins';
-const MIN_PASSWORD = 10;
 
 function readPassword(formData: FormData) {
   const password = String(formData.get('password') ?? '');
   if (password.length < MIN_PASSWORD) {
     throw new FormError(`Нууц үг дор хаяж ${MIN_PASSWORD} тэмдэгт байна.`);
+  }
+  if (password !== formData.get('passwordConfirm')) {
+    throw new FormError('Давтан оруулсан нууц үг таарахгүй байна.');
   }
   return hashPassword(password);
 }

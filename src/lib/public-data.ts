@@ -27,7 +27,14 @@ export const getHomeData = cache(async () => {
     db.work.findMany({
       where: { isVisible: true },
       orderBy: [...visibleOrder],
-      select: { id: true, title: true, beforeImage: imageSelect, afterImage: imageSelect },
+      select: {
+        id: true,
+        title: true,
+        doneOn: true,
+        location: true,
+        beforeImage: imageSelect,
+        afterImage: imageSelect,
+      },
     }),
   ]);
   return { settings, services, works };

@@ -5,6 +5,7 @@ import { requireAdmin } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { PERMISSION_LABELS } from '@/lib/permissions';
 import { createAdminAction, resetPasswordAction, updateAdminAction } from './actions';
+import { PasswordFields } from './PasswordFields';
 import { PermissionFields } from './PermissionFields';
 
 export default async function AdminsPage() {
@@ -59,15 +60,7 @@ export default async function AdminsPage() {
                 </div>
               </ActionForm>
               <ActionForm action={resetPasswordAction.bind(null, admin.id)} className="row">
-                <Field
-                  label="Шинэ нууц үг"
-                  name="password"
-                  id={`${admin.id}-password`}
-                  type="password"
-                  autoComplete="new-password"
-                  minLength={10}
-                  required
-                />
+                <PasswordFields id={admin.id} label="Шинэ нууц үг" />
                 <SubmitButton className="btn btn-secondary">Нууц үг солих</SubmitButton>
               </ActionForm>
             </div>
@@ -81,15 +74,9 @@ export default async function AdminsPage() {
           <div className="row">
             <Field label="Нэр" name="name" id="new-name" required maxLength={80} />
             <Field label="Имэйл" name="email" id="new-email" type="email" required />
-            <Field
-              label="Нууц үг (10+ тэмдэгт)"
-              name="password"
-              id="new-password"
-              type="password"
-              autoComplete="new-password"
-              minLength={10}
-              required
-            />
+          </div>
+          <div className="row">
+            <PasswordFields id="new" label="Нууц үг" />
           </div>
           <PermissionFields />
           <div>

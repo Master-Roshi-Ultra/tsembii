@@ -1,5 +1,6 @@
 import { Picture } from '@/components/ui/Picture';
 import { getDictionary } from '@/i18n';
+import { formatDate } from '@/lib/dates';
 import type { PublicWork } from '@/lib/public-data';
 import styles from './home.module.css';
 import { Section } from './Section';
@@ -22,7 +23,15 @@ export async function Works({ works }: { works: PublicWork[] }) {
                   <figcaption className={styles.after}>{t.works.after}</figcaption>
                 </figure>
               </div>
-              <h3>{work.title}</h3>
+              <div className={styles.workMeta}>
+                <h3>{work.title}</h3>
+                <p className="muted">
+                  <time dateTime={work.doneOn.toISOString().slice(0, 10)}>
+                    {formatDate(work.doneOn)}
+                  </time>
+                  {work.location && ` · ${work.location}`}
+                </p>
+              </div>
             </li>
           ))}
         </ul>

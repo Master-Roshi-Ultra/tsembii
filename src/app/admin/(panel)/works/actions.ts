@@ -2,14 +2,23 @@
 
 import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/lib/auth';
+import { parseDateInput } from '@/lib/dates';
 import { db } from '@/lib/db';
 import { checkbox, type FormState, FormError, handleForm, int, text } from '@/lib/form';
 import { deleteImageIfUnused, saveImage } from '@/lib/image-store';
 
 const PATH = '/admin/works';
 
+function readDoneOn(formData: FormData) {
+  const doneOn = parseDateInput(String(formData.get('doneOn') ?? ''));
+  if (!doneOn) throw new FormError('Ажил хийсэн огноог оруулна уу (ирээдүйн огноо болохгүй).');
+  return doneOn;
+}
+
 const readWork = (formData: FormData) => ({
   title: text(formData, 'title', 'Ажлын нэр', { max: 120 }),
+  doneOn: readDoneOn(formData),
+  location: text(formData, 'location', 'Байршил', { max: 80 }),
   sortOrder: int(formData, 'sortOrder', 'Дараалал', { max: 999 }),
   isVisible: checkbox(formData, 'isVisible'),
 });
