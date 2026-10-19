@@ -1,0 +1,372 @@
+/* ── Гол танилцуулга: зурган дэвсгэр + бараан сүүдэр ── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 85% 20%, #262626 0%, var(--color-dark) 65%);
+  color: var(--color-on-dark);
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Бичвэр уншигдахаар зүүн талыг бараан болгоно */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.85) 0%,
+    rgb(0 0 0 / 0.55) 55%,
+    rgb(0 0 0 / 0.15) 100%
+  );
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+/* Утсанд 32–36px, компьютерт 60–64px */
+.hero h1 {
+  color: #fcfcfc;
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-size: clamp(32px, 8.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 span {
+  color: #eccc89;
+}
+
+.heroLead {
+  font-size: 1.0625rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.heroNote {
+  color: var(--color-on-dark-muted);
+  font-size: 0.875rem;
+}
+
+/* ── Хэсэг ── */
+.section {
+  padding: var(--space-12) 0;
+}
+
+.section + .section:not(.sectionDark) {
+  border-top: 1px solid var(--color-border);
+}
+
+.sectionDark {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+}
+
+.sectionHeader {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.sectionHeader h2 {
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  font-weight: 800;
+}
+
+.sectionLead {
+  color: var(--color-muted);
+}
+
+.sectionDark .sectionLead {
+  color: var(--color-on-dark-muted);
+}
+
+.empty {
+  padding: var(--space-8) var(--space-4);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* ── Үйлчилгээ: утсанд 2, компьютерт 4 багана ── */
+.serviceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+.serviceBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  font-size: 0.9375rem;
+}
+
+.serviceBody h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.servicePrice {
+  margin-top: auto;
+  color: var(--color-gold-ink);
+  font-weight: 700;
+}
+
+/* ── Үнийн хүснэгт ── */
+.priceTable {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  font-size: 0.9375rem;
+}
+
+.priceTable th,
+.priceTable td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.priceTable th {
+  background: var(--color-surface);
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.priceTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.priceTable td:last-child,
+.priceTable th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.priceTable td:last-child {
+  color: var(--color-gold-ink);
+  font-weight: 700;
+}
+
+/* ── Ажлын үр дүн ── */
+.workList {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workCard {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.workCard h3 {
+  font-size: 1rem;
+}
+
+.workPair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.workPair figure {
+  position: relative;
+  margin: 0;
+}
+
+.workPair figcaption {
+  position: absolute;
+  bottom: var(--space-3);
+  padding: var(--space-1) var(--space-4);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.before {
+  left: var(--space-3);
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+}
+
+.after {
+  right: var(--space-3);
+  background: #fff;
+  color: #000;
+}
+
+/* ── Захиалах алхам (бараан тууз) ── */
+.steps {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.steps h3 {
+  font-size: 1.0625rem;
+}
+
+.steps p {
+  color: var(--color-on-dark-muted);
+  font-size: 0.9375rem;
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-gold-bright);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stepNumber::after {
+  content: '';
+  flex: 1;
+  max-width: 64px;
+  height: 1px;
+  background: var(--color-on-dark);
+  opacity: 0.3;
+}
+
+/* ── Холбоо барих ── */
+.contact {
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+}
+
+.contactList {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.contactList dt {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.contactList dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.contactList a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  text-decoration-color: var(--color-muted);
+  text-underline-offset: 4px;
+}
+
+/* ── Компьютер ── */
+@media (min-width: 768px) {
+  .heroInner {
+    gap: var(--space-6);
+    padding-top: 112px;
+    padding-bottom: 112px;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 5vw, 64px);
+  }
+
+  .heroLead {
+    font-size: 1.25rem;
+  }
+
+  .section {
+    padding: var(--space-16) 0;
+  }
+
+  .serviceGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .serviceBody {
+    padding: var(--space-4);
+  }
+
+  .workList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .contact {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    padding: var(--space-8);
+  }
+
+  .contactList {
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: var(--space-12);
+  }
+}

@@ -1,0 +1,151 @@
+/* ── Design token ── */
+:root {
+  /* Суурь нь хар, цагаан; алтлаг зөвхөн онцлох бичигт */
+  --color-bg: #fff;
+  --color-surface: #f4f4f4;
+  --color-card: #fff;
+  --color-border: #e5e5e5;
+  --color-text: #111;
+  --color-muted: #5f5f5f;
+  --color-gold-ink: #8a6a35; /* цагаан дээрх алтлаг бичиг */
+  --color-danger: #a33a2c;
+
+  /* Бараан тууз (толгой, алхам, хөл) */
+  --color-dark: #000;
+  --color-dark-line: #262626;
+  --color-on-dark: #fff;
+  --color-on-dark-muted: #a8a8a8;
+  --color-gold-bright: #dcb766; /* хар дээрх алтлаг бичиг */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --content-width: 1120px;
+  --tap: 44px; /* хуруугаар дарахад хангалттай хамгийн бага өндөр */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 93.75%; /* 15px: бүх rem хэмжээ хамт багасна */
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* наалттай толгойн доор хэсгийн гарчиг дарагдахгүй */
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-ink);
+  outline-offset: 2px;
+}
+
+/* ── Utility ── */
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding: 0 var(--space-6);
+  border: 1px solid var(--color-text);
+  border-radius: 999px;
+  background: var(--color-text);
+  color: var(--color-card);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #000;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  background: var(--color-surface);
+}
+
+/* Бараан дэвсгэр дээрх товчнууд */
+.btn-light {
+  border-color: #fff;
+  background: #fff;
+  color: #000;
+}
+
+.btn-light:hover {
+  background: #e8e8e8;
+}
+
+.btn-outline-light {
+  border-color: #fff;
+  background: transparent;
+  color: var(--color-on-dark);
+}
+
+.btn-outline-light:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-6);
+  }
+}
