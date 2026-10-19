@@ -65,6 +65,7 @@ export const mn = {
     menu: 'Цэс',
     social: 'Сошиал',
     rights: 'Цэмбий. Бүх эрх хуулиар хамгаалагдсан.',
+    admin: 'Админ',
     poweredBy: 'Powered by',
   },
   legal: {

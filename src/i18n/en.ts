@@ -66,6 +66,7 @@ export const en: Dictionary = {
     menu: 'Menu',
     social: 'Social',
     rights: 'Tsembii. All rights reserved.',
+    admin: 'Admin',
     poweredBy: 'Powered by',
   },
   legal: {
