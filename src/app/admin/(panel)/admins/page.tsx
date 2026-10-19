@@ -77,7 +77,7 @@ export default async function AdminsPage() {
 
       <section className="card">
         <h2>Шинэ админ</h2>
-        <ActionForm action={createAdminAction}>
+        <ActionForm action={createAdminAction} resetOnSuccess>
           <div className="row">
             <Field label="Нэр" name="name" id="new-name" required maxLength={80} />
             <Field label="Имэйл" name="email" id="new-email" type="email" required />

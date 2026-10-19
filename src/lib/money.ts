@@ -11,3 +11,11 @@ export const formatPrice = (minor: number) => `${tugrik.format(minor / 100)}₮`
 export function lineAmount(unitPrice: number | null, tenths: number): number | null {
   return unitPrice === null ? null : Math.round((unitPrice * tenths) / 10);
 }
+
+/** Админы оруулсан төгрөг («25,000», «25 000») → мөнгө. Хоосон бол null («Үнэ тохирно»). */
+export function parseTugrik(input: string): number | null | undefined {
+  const value = input.replace(/[\s,₮]/g, '');
+  if (!value) return null;
+  if (!/^\d{1,9}$/.test(value)) return undefined; // буруу оролт
+  return tugrikToMinor(Number(value));
+}

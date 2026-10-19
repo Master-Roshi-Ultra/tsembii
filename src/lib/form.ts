@@ -45,3 +45,19 @@ export function oneOf<T extends string>(
 ): T[] {
   return formData.getAll(name).filter((v): v is T => allowed.includes(v as T));
 }
+
+/** Бүхэл тоо; хоосон бол `fallback` */
+export function int(
+  formData: FormData,
+  name: string,
+  label: string,
+  { min = 0, max = 100000, fallback = 0 }: { min?: number; max?: number; fallback?: number } = {},
+): number {
+  const raw = String(formData.get(name) ?? '').trim();
+  if (!raw) return fallback;
+  const value = Number(raw);
+  if (!Number.isInteger(value) || value < min || value > max) {
+    throw new FormError(`«${label}» ${min}–${max} хооронд бүхэл тоо байна.`);
+  }
+  return value;
+}

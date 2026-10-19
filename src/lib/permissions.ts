@@ -14,5 +14,6 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
 
 /** Админы хэсгийн цэс; `permission: 'OWNER'` нь зөвхөн бүрэн эрхтэй админд. */
 export const ADMIN_NAV: { href: string; label: string; permission: Permission | 'OWNER' }[] = [
+  { href: '/admin/services', label: 'Үйлчилгээ', permission: 'CATALOG' },
   { href: '/admin/admins', label: 'Админууд', permission: 'OWNER' },
 ];
