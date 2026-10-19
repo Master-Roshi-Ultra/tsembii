@@ -71,9 +71,16 @@ export function SiteFooter({ phones, services }: { phones: string[]; services: s
             links={SOCIAL_LINKS.map((link) => ({ ...link, external: true }))}
           />
         </div>
-        <p className={styles.bottom}>
-          © {new Date().getFullYear()} Цэмбий. Бүх эрх хуулиар хамгаалагдсан.
-        </p>
+        <div className={styles.bottom}>
+          <p>© {new Date().getFullYear()} Цэмбий. Бүх эрх хуулиар хамгаалагдсан.</p>
+          <p>
+            Вэбсайтыг{' '}
+            <a href="https://www.chameleon.mn/" target="_blank" rel="noopener noreferrer">
+              Chameleon
+            </a>{' '}
+            хийсэн
+          </p>
+        </div>
       </div>
     </footer>
   );

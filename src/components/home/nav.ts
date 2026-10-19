@@ -8,7 +8,7 @@ export const NAV = [
 
 /** Сошиал хуудсууд; холбоос хоосон бол хөлд харагдахгүй. */
 export const SOCIAL_LINKS = [
-  { label: 'Facebook', href: '' },
+  { label: 'Facebook', href: 'https://www.facebook.com/forexideamongolia' },
   { label: 'Instagram', href: '' },
   { label: 'Messenger', href: '' },
 ].filter((link) => link.href);
