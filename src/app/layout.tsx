@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Manrope } from 'next/font/google';
+import { Golos_Text, Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
 import './globals.css';
 
@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 /** Гол гарчгийн фонт */
-const manrope = Manrope({
-  weight: '800',
+const golos = Golos_Text({
+  weight: '700',
   subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
   variable: '--font-display',
   display: 'swap',
@@ -28,7 +28,7 @@ export const viewport: Viewport = { themeColor: '#000000' };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="mn" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="mn" className={`${inter.variable} ${golos.variable}`}>
       <body>{children}</body>
     </html>
   );

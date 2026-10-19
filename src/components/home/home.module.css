@@ -88,7 +88,7 @@
   color: #fcfcfc;
   font-family: var(--font-display), var(--font-sans), sans-serif;
   font-size: clamp(32px, 8.5vw, 36px);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
