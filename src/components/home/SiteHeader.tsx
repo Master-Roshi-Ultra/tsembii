@@ -1,12 +1,6 @@
 import { Logo } from '@/components/ui/Logo';
 import styles from './home.module.css';
-
-const NAV = [
-  { href: '#services', label: 'Үйлчилгээ' },
-  { href: '#prices', label: 'Үнэ' },
-  { href: '#works', label: 'Ажлын үр дүн' },
-  { href: '#contact', label: 'Холбоо барих' },
-];
+import { NAV } from './nav';
 
 export function SiteHeader() {
   return (
@@ -22,6 +16,9 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
+        <a href="#services" className="btn btn-gold btn-sm">
+          Захиалах <span aria-hidden="true">→</span>
+        </a>
       </div>
     </header>
   );

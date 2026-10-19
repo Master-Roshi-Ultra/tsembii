@@ -13,11 +13,11 @@ export function Works({ works }: { works: PublicWork[] }) {
               <div className={styles.workPair}>
                 <figure>
                   <Picture image={work.beforeImage} alt={`${work.title} — өмнө`} />
-                  <figcaption>Өмнө</figcaption>
+                  <figcaption className={styles.before}>Өмнө</figcaption>
                 </figure>
                 <figure>
                   <Picture image={work.afterImage} alt={`${work.title} — дараа`} />
-                  <figcaption>Дараа</figcaption>
+                  <figcaption className={styles.after}>Дараа</figcaption>
                 </figure>
               </div>
               <h3>{work.title}</h3>

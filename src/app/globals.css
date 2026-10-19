@@ -10,6 +10,14 @@
   --color-gold-ink: #85663a;
   --color-danger: #a33a2c;
 
+  /* Бараан тууз (толгой, алхам, хөл) */
+  --color-dark: #15130f;
+  --color-dark-line: #2c2820;
+  --color-on-dark: #f4efe6;
+  --color-on-dark-muted: #b9b1a3;
+  --color-gold-bright: #dcb766;
+  --gradient-gold: linear-gradient(180deg, #e4c77f 0%, #c79d52 100%);
+
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -113,6 +121,34 @@ p {
 
 .btn-secondary:hover {
   background: var(--color-surface);
+}
+
+.btn-gold {
+  border: 0;
+  background: var(--gradient-gold);
+  color: var(--color-dark);
+}
+
+.btn-gold:hover {
+  background: var(--gradient-gold);
+  filter: brightness(1.05);
+}
+
+/* Бараан дэвсгэр дээрх хүрээтэй товч */
+.btn-outline-light {
+  border-color: var(--color-gold-bright);
+  background: transparent;
+  color: var(--color-on-dark);
+}
+
+.btn-outline-light:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+
+.btn-sm {
+  min-height: 38px;
+  padding: 0 var(--space-4);
+  font-size: 0.875rem;
 }
 
 @media (min-width: 768px) {

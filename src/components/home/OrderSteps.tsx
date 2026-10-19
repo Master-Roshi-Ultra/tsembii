@@ -9,15 +9,15 @@ const STEPS = [
 
 export function OrderSteps() {
   return (
-    <Section id="steps" title="Захиалах алхам">
+    <Section id="steps" title="Хэрхэн захиалах вэ" dark>
       <ol className={styles.steps}>
         {STEPS.map((step, i) => (
           <li key={step.title}>
             <span className={styles.stepNumber} aria-hidden="true">
-              {i + 1}
+              {String(i + 1).padStart(2, '0')}
             </span>
             <h3>{step.title}</h3>
-            <p className="muted">{step.text}</p>
+            <p>{step.text}</p>
           </li>
         ))}
       </ol>
