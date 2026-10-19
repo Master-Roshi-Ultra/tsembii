@@ -49,7 +49,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(120% 90% at 85% 20%, #3a3124 0%, var(--color-dark) 65%);
+  background: radial-gradient(120% 90% at 85% 20%, #262626 0%, var(--color-dark) 65%);
   color: var(--color-on-dark);
 }
 
@@ -68,9 +68,9 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgb(15 13 10 / 0.88) 0%,
-    rgb(15 13 10 / 0.6) 55%,
-    rgb(15 13 10 / 0.2) 100%
+    rgb(0 0 0 / 0.85) 0%,
+    rgb(0 0 0 / 0.55) 55%,
+    rgb(0 0 0 / 0.15) 100%
   );
 }
 
@@ -169,7 +169,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-card);
-  box-shadow: 0 1px 2px rgb(28 26 23 / 0.04);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
 }
 
 .serviceBody {
@@ -281,8 +281,8 @@
 
 .after {
   right: var(--space-3);
-  background: var(--gradient-gold);
-  color: var(--color-dark);
+  background: #fff;
+  color: #000;
 }
 
 /* ── Захиалах алхам (бараан тууз) ── */
@@ -323,8 +323,8 @@
   flex: 1;
   max-width: 64px;
   height: 1px;
-  background: var(--color-gold-bright);
-  opacity: 0.6;
+  background: var(--color-on-dark);
+  opacity: 0.3;
 }
 
 /* ── Холбоо барих ── */
@@ -361,7 +361,7 @@
   display: inline-flex;
   align-items: center;
   min-height: var(--tap);
-  text-decoration-color: var(--color-gold);
+  text-decoration-color: var(--color-muted);
   text-underline-offset: 4px;
 }
 

@@ -24,7 +24,7 @@ export function Hero({ image }: { image: PublicImage }) {
         </h1>
         <p className={styles.heroLead}>Хивс, буйдан, матрас, сандлын цэвэрлэгээ</p>
         <div className={styles.heroActions}>
-          <a href="#services" className="btn btn-gold">
+          <a href="#services" className="btn btn-light">
             Үйлчилгээгээ сонгох <span aria-hidden="true">→</span>
           </a>
           <a href="#prices" className="btn btn-outline-light">

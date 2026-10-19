@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'Хивс, буйдан, матрас, сандлын цэвэрлэгээ. Үйлчилгээгээ сагслаад хүсэлт илгээнэ үү — бид холбогдож үнэ, цагийг тохирно.',
 };
 
-export const viewport: Viewport = { themeColor: '#f7f3ec' };
+export const viewport: Viewport = { themeColor: '#000000' };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
