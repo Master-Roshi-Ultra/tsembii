@@ -1,0 +1,341 @@
+/* ── Толгой ── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.headerInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  padding-top: var(--space-3);
+  padding-bottom: var(--space-3);
+}
+
+.logo {
+  color: var(--color-text);
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  font-size: 0.9375rem;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--color-text);
+}
+
+/* ── Гол танилцуулга ── */
+.hero {
+  padding: var(--space-8) 0 var(--space-12);
+}
+
+.heroInner {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.heroText {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.heroText h1 {
+  font-size: clamp(2rem, 7vw, 3.25rem);
+  font-weight: 800;
+}
+
+.heroText p {
+  max-width: 34rem;
+  font-size: 1.0625rem;
+}
+
+.heroImage {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+/* ── Хэсэг ── */
+.section {
+  padding: var(--space-12) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.sectionHeader {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.sectionHeader h2 {
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  font-weight: 800;
+}
+
+.empty {
+  padding: var(--space-8) var(--space-4);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* ── Үйлчилгээ: утсанд 2, компьютерт 4 багана ── */
+.serviceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+}
+
+.serviceBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  font-size: 0.9375rem;
+}
+
+.serviceBody h3 {
+  font-size: 1rem;
+}
+
+.servicePrice {
+  margin-top: auto;
+  font-weight: 700;
+}
+
+/* ── Үнийн хүснэгт ── */
+.priceTable {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  font-size: 0.9375rem;
+}
+
+.priceTable th,
+.priceTable td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.priceTable th {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.priceTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.priceTable td:last-child,
+.priceTable th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Ажлын үр дүн ── */
+.workList {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workCard {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.workCard h3 {
+  font-size: 1rem;
+}
+
+.workPair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.workPair figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.workPair figcaption {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  background: var(--color-card);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ── Захиалах алхам ── */
+.steps {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+}
+
+.steps h3 {
+  font-size: 1rem;
+}
+
+.stepNumber {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: var(--color-card);
+  font-weight: 800;
+}
+
+/* ── Холбоо барих ── */
+.contact {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.contactList {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.contactList dt {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.contactList dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.contactList a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  text-decoration-color: var(--color-gold);
+  text-underline-offset: 4px;
+}
+
+/* ── Хөл ── */
+.footer {
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 0.9375rem;
+}
+
+.footerInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* ── Компьютер ── */
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-16) 0;
+  }
+
+  .heroInner {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-12);
+  }
+
+  .section {
+    padding: var(--space-16) 0;
+  }
+
+  .serviceGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .serviceBody {
+    padding: var(--space-4);
+  }
+
+  .workList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contact {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .contactList {
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: var(--space-12);
+  }
+}

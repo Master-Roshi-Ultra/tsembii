@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Мөнгөн дүн бүр мөнгө (1/100 ₮) нэгжтэй бүхэл тоо.
+/// Хэмжээ (quantity) бүр 1/10 нэгжтэй: 6.5 м² = 65, 3 ширхэг = 30.
+
+enum Unit {
+  SQM // м²
+  PIECE // ширхэг
+  SEAT // суудал
+}
+
+enum OrderStatus {
+  NEW
+  CONFIRMED
+  DONE
+  CANCELLED
+}
+
+/// Энгийн админы хандах хэсэг. Бүрэн эрхтэй (isOwner) админ бүгдэд хандаж, бусад админыг удирдана.
+enum Permission {
+  ORDERS // захиалга
+  CATALOG // үйлчилгээ, ажлын үр дүн
+  SETTINGS // холбоо барих мэдээлэл, нүүрний зураг
+}
+
+model Admin {
+  id           String         @id @default(cuid())
+  email        String         @unique
+  name         String
+  passwordHash String
+  isOwner      Boolean        @default(false)
+  permissions  Permission[]
+  isActive     Boolean        @default(true)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  sessions     AdminSession[]
+}
+
+model AdminSession {
+  id        String   @id // cookie-ийн токены sha256
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([adminId])
+}
+
+/// Sharp-аар WebP болгосон зураг; файл нь UPLOAD_DIR/<key>
+model Image {
+  id          String    @id @default(cuid())
+  key         String    @unique
+  width       Int
+  height      Int
+  bytes       Int
+  createdAt   DateTime  @default(now())
+  services    Service[]
+  worksAfter  Work[]    @relation("WorkAfter")
+  worksBefore Work[]    @relation("WorkBefore")
+  settings    Setting[]
+}
+
+/// Ганц мөр (id = 1): нүүрний холбоо барих мэдээлэл ба гол зураг
+model Setting {
+  id          Int      @id @default(1)
+  phones      String[]
+  hours       String
+  area        String
+  heroImageId String?
+  heroImage   Image?   @relation(fields: [heroImageId], references: [id], onDelete: SetNull)
+  updatedAt   DateTime @updatedAt
+}
+
+/// Брифийн «үйлчилгээний ангилал»: нэр, нэгж, үнэ, зураг бүхий сагслах нэгж
+model Service {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  unit        Unit
+  price       Int? // null = «Үнэ тохирно»
+  imageId     String?
+  image       Image?      @relation(fields: [imageId], references: [id], onDelete: SetNull)
+  sortOrder   Int         @default(0)
+  isVisible   Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+
+  @@index([isVisible, sortOrder])
+}
+
+/// Ажлын өмнөх / дараах зургийн хос
+model Work {
+  id            String   @id @default(cuid())
+  title         String
+  beforeImageId String
+  beforeImage   Image    @relation("WorkBefore", fields: [beforeImageId], references: [id])
+  afterImageId  String
+  afterImage    Image    @relation("WorkAfter", fields: [afterImageId], references: [id])
+  sortOrder     Int      @default(0)
+  isVisible     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([isVisible, sortOrder])
+}
+
+model Order {
+  id           String      @id @default(cuid())
+  number       Int         @unique @default(autoincrement())
+  requestKey   String      @unique // давхар илгээлтээс хамгаална
+  phone        String // баталгаажсан, +976 угтваргүй 8 орон
+  address      String
+  note         String?
+  consentAt    DateTime // утас, хаягаар холбогдох зөвшөөрөл
+  total        Int // үнэтэй мөрүүдийн нийлбэр (урьдчилсан)
+  status       OrderStatus @default(NEW)
+  internalNote String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  items        OrderItem[]
+
+  @@index([status, createdAt])
+  @@index([phone])
+}
+
+/// Захиалгын үеийн нэр, нэгж, үнийн хуулбар
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  name      String
+  unit      Unit
+  unitPrice Int?
+  quantity  Int
+  amount    Int?
+}
+
+/// Verify.mn-ийн түр баталгаажуулалт; browser-т cookie-ийн hash-аар холбогдоно
+model PhoneVerification {
+  id         String    @id @default(cuid())
+  phone      String
+  sessionId  String    @unique // Verify.mn session ID
+  code       String
+  cookieHash String    @unique
+  ip         String
+  expiresAt  DateTime
+  verifiedAt DateTime?
+  usedAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([phone, createdAt])
+  @@index([ip, createdAt])
+}
