@@ -1,0 +1,71 @@
+.addButton {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  font-size: 0.875rem;
+}
+
+.cartLink {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  color: #fff;
+}
+
+.cartLink:hover {
+  color: var(--color-gold-bright);
+}
+
+.count {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--color-gold-bright);
+  color: #000;
+  font-size: 0.6875rem;
+  font-weight: 800;
+}
+
+/* Утасны доод тууз */
+.cartBar {
+  position: fixed;
+  right: var(--space-3);
+  bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+  left: var(--space-3);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: 0 var(--space-4);
+  border-radius: 999px;
+  background: #000;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.25);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cartBar span:nth-of-type(1) {
+  flex: 1;
+}
+
+.cartBarSpacer {
+  height: 76px;
+  background: var(--color-dark);
+}
+
+@media (min-width: 768px) {
+  .cartBarSpacer,
+  .cartBar {
+    display: none;
+  }
+}

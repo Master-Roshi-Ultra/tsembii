@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CartLink } from '@/components/cart/CartLink';
 import { Logo } from '@/components/ui/Logo';
 import { getDictionary } from '@/i18n';
 import { LanguageSwitch } from './LanguageSwitch';
@@ -20,7 +21,10 @@ export async function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <LanguageSwitch />
+        <div className={styles.actions}>
+          <LanguageSwitch />
+          <CartLink label={t.cart.open} />
+        </div>
       </div>
     </header>
   );

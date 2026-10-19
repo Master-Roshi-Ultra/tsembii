@@ -1,0 +1,198 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 720px;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-16);
+}
+
+.page h1 {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 800;
+}
+
+.page h2 {
+  font-size: 1.25rem;
+}
+
+.flow {
+  display: grid;
+  gap: var(--space-6);
+}
+
+/* ── Алхмын заагч ── */
+.steps {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.steps li {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-muted);
+}
+
+.steps li span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  font-weight: 700;
+}
+
+.steps li[aria-current='step'] {
+  border-color: var(--color-text);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.steps li[aria-current='step'] span {
+  background: var(--color-text);
+  color: #fff;
+}
+
+/* ── Сагс ── */
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+}
+
+.lines {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lines li {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.lineHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.lineControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.amount {
+  margin-left: auto;
+}
+
+.quantity {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.quantity button,
+.quantity input {
+  min-width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  background: var(--color-card);
+  color: var(--color-text);
+  font: inherit;
+  text-align: center;
+}
+
+.quantity button {
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.quantity button:disabled {
+  color: var(--color-border);
+  cursor: default;
+}
+
+.quantity input {
+  width: 64px;
+  border-right: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+
+.remove,
+.link {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.total {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.total strong {
+  font-size: 1.25rem;
+}
+
+/* ── Утас ── */
+.code {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+/* ── Хаяг ── */
+.summary {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.summary li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* ── Амжилт ── */
+.done {
+  justify-items: start;
+}
+
+.doneIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #000;
+  color: var(--color-gold-bright);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.number {
+  font-size: 1.5rem;
+}

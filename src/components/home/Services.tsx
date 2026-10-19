@@ -1,3 +1,4 @@
+import { AddToCartButton } from '@/components/cart/AddToCartButton';
 import { Picture } from '@/components/ui/Picture';
 import { getDictionary } from '@/i18n';
 import { formatPrice } from '@/lib/money';
@@ -27,6 +28,10 @@ export async function Services({ services }: { services: PublicService[] }) {
                     </>
                   )}
                 </p>
+                <AddToCartButton
+                  serviceId={service.id}
+                  labels={{ add: t.cart.add, added: t.cart.added }}
+                />
               </div>
             </li>
           ))}
