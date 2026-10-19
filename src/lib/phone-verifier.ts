@@ -91,13 +91,23 @@ class TestVerifier implements PhoneVerifier {
   }
 }
 
+/** Production дээр түлхүүргүй үед: хэрэглэгчид «түр ажиллахгүй» гэж харагдана. */
+class UnconfiguredVerifier implements PhoneVerifier {
+  readonly isTest = false;
+  private fail(): never {
+    throw new VerifierError('VERIFYMN_API_KEY тохируулаагүй.');
+  }
+  createSession = async (): Promise<VerifySession> => this.fail();
+  getStatus = async (): Promise<VerifyRemoteStatus> => this.fail();
+}
+
 function createPhoneVerifier(): PhoneVerifier {
   const apiKey = process.env.VERIFYMN_API_KEY;
   if (apiKey) return new VerifyMn(apiKey);
   if (process.env.NODE_ENV === 'production') {
-    throw new VerifierError(
-      'VERIFYMN_API_KEY тохируулаагүй — production дээр туршилтын горим хориотой.',
-    );
+    // Туршилтын горим production-д хориотой.
+    console.error('VERIFYMN_API_KEY тохируулаагүй — утас баталгаажуулалт ажиллахгүй.');
+    return new UnconfiguredVerifier();
   }
   return new TestVerifier();
 }

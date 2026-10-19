@@ -36,6 +36,31 @@ npm run dev                   # http://localhost:3100
 
 Зургийг Sharp-аар WebP болгож `UPLOAD_DIR`-д хадгална (Railway дээр Volume).
 
+## Railway-д нийтлэх
+
+Нэг project-д 2 service: **app** (энэ repo) ба **PostgreSQL**. Тохиргоо `railway.json`-д:
+build — `npm run build`, start — `prisma migrate deploy && next start`, healthcheck — `/api/health`.
+
+1. Railway → **New Project** → **Deploy from GitHub repo** → энэ repo.
+2. Project-д **Database → PostgreSQL** нэмнэ.
+3. app service → **Volumes** → mount path `/data` (зураг deploy бүрт арилахгүй).
+4. app service → **Variables**:
+   - `DATABASE_URL` = `${{Postgres.DATABASE_URL}}`
+   - `UPLOAD_DIR` = `/data/uploads`
+   - `VERIFYMN_API_KEY` — verify.mn Developer Console-оос (хоосон бол баталгаажуулалт ажиллахгүй)
+   - `SEED_OWNER_EMAIL`, `SEED_OWNER_PASSWORD`, `SEED_OWNER_NAME` — эхний админ
+5. Deploy дууссаны дараа эхний админ ба тохиргоог үүсгэнэ (нэг удаа):
+   `railway run npm run db:seed` (эсвэл service-ийн **Shell**-д `npm run db:seed`).
+   Дараа нь `SEED_OWNER_PASSWORD`-ийг Variables-аас устгана.
+6. **Settings → Networking → Custom Domain**: домэйнээ нэмж, DNS-д заасан CNAME бичлэгийг
+   оруулна. HTTPS сертификатыг Railway автоматаар олгоно.
+
+### Нөөцлөлт
+
+- **PostgreSQL**: Railway-ийн Postgres service → **Backups** (төлөвлөгөөнөөс хамаарна) эсвэл
+  локалаас тогтмол `pg_dump "$DATABASE_URL" > tsembii-YYYYMMDD.sql`.
+- **Зураг**: Volume-ийн `/data/uploads` хавтас; service-ийн Shell-ээс архивлан татаж авна.
+
 ## Шалгалт
 
 ```sh
