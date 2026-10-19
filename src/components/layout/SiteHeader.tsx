@@ -1,19 +1,20 @@
+import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
-import styles from './home.module.css';
+import styles from './SiteHeader.module.css';
 import { NAV } from './nav';
 
 export function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.headerInner}`}>
-        <a href="#top" className={styles.logoLink} aria-label="Цэмбий — нүүр">
+        <Link href="/#top" className={styles.logoLink} aria-label="Цэмбий — нүүр">
           <Logo />
-        </a>
+        </Link>
         <nav aria-label="Үндсэн цэс" className={styles.nav}>
           {NAV.map((item) => (
-            <a key={item.href} href={item.href}>
+            <Link key={item.href} href={item.href}>
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>

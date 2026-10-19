@@ -1,11 +1,22 @@
+import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
 import { telHref } from '@/lib/public-data';
 import styles from './SiteFooter.module.css';
-import { NAV, SOCIAL_LINKS } from './nav';
+import { BUILDER, LEGAL_LINKS, NAV, SOCIAL_LINKS } from './nav';
 
-type Link = { href: string; label: string; external?: boolean };
+type FooterLink = { href: string; label: string; external?: boolean };
 
-function FooterColumn({ title, links }: { title: string; links: Link[] }) {
+/** Гадаад холбоос шинэ табд ↗ тэмдэгтэй, дотоод нь Next-ийн Link */
+function FooterLinkItem({ href, label, external }: FooterLink) {
+  if (!external) return <Link href={href}>{label}</Link>;
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {label} <span aria-hidden="true">↗</span>
+    </a>
+  );
+}
+
+function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
   if (!links.length) return null;
   return (
     <nav aria-label={title} className={styles.column}>
@@ -13,13 +24,7 @@ function FooterColumn({ title, links }: { title: string; links: Link[] }) {
       <ul>
         {links.map((link) => (
           <li key={link.label}>
-            {link.external ? (
-              <a href={link.href} target="_blank" rel="noopener noreferrer">
-                {link.label} <span aria-hidden="true">↗</span>
-              </a>
-            ) : (
-              <a href={link.href}>{link.label}</a>
-            )}
+            <FooterLinkItem {...link} />
           </li>
         ))}
       </ul>
@@ -63,7 +68,7 @@ export function SiteFooter({ phones, services }: { phones: string[]; services: s
           </div>
           <FooterColumn
             title="Үйлчилгээ"
-            links={services.map((name) => ({ href: '#services', label: name }))}
+            links={services.map((name) => ({ href: '/#services', label: name }))}
           />
           <FooterColumn title="Цэс" links={NAV} />
           <FooterColumn
@@ -73,13 +78,16 @@ export function SiteFooter({ phones, services }: { phones: string[]; services: s
         </div>
         <div className={styles.bottom}>
           <p>© {new Date().getFullYear()} Цэмбий. Бүх эрх хуулиар хамгаалагдсан.</p>
-          <p>
-            Вэбсайтыг{' '}
-            <a href="https://www.chameleon.mn/" target="_blank" rel="noopener noreferrer">
-              Chameleon
-            </a>{' '}
-            хийсэн
-          </p>
+          <ul className={styles.bottomLinks}>
+            {LEGAL_LINKS.map((link) => (
+              <li key={link.href}>
+                <FooterLinkItem {...link} />
+              </li>
+            ))}
+            <li>
+              Powered by <FooterLinkItem {...BUILDER} external />
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

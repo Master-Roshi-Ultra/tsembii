@@ -77,9 +77,18 @@
   font-size: 0.8125rem;
 }
 
+.bottomLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .bottom a {
   color: var(--color-on-dark);
-  text-underline-offset: 3px;
+  text-decoration: none;
 }
 
 .bottom a:hover {
