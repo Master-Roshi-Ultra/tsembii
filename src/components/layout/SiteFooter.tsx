@@ -3,7 +3,7 @@ import { Logo } from '@/components/ui/Logo';
 import { getDictionary } from '@/i18n';
 import { telHref } from '@/lib/public-data';
 import styles from './SiteFooter.module.css';
-import { BUILDER, LEGAL_LINKS, NAV, SOCIAL_LINKS } from './nav';
+import { ADMIN_LINK, BUILDER, LEGAL_LINKS, NAV, SOCIAL_LINKS } from './nav';
 
 type FooterLink = { href: string; label: string; external?: boolean };
 
@@ -89,6 +89,7 @@ export async function SiteFooter({ phones, services }: { phones: string[]; servi
             {LEGAL_LINKS.map((link) => (
               <FooterLinkItem key={link.href} href={link.href} label={t.legal[link.key].title} />
             ))}
+            <FooterLinkItem href={ADMIN_LINK} label={t.footer.admin} />
             <span>
               {t.footer.poweredBy} <FooterLinkItem {...BUILDER} external />
             </span>

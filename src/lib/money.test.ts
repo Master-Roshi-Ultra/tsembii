@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatPrice, lineAmount, tugrikToMinor } from './money';
+import { formatPrice, lineAmount, parseTugrik, tugrikToMinor } from './money';
 
 describe('money', () => {
   it('мөнгийг төгрөгөөр харуулна', () => {
@@ -9,5 +9,19 @@ describe('money', () => {
   it('м²-ийн аравтын хэмжээгээр мөрийн дүн бодно, үнэгүй бол null', () => {
     expect(lineAmount(tugrikToMinor(3000), 65)).toBe(tugrikToMinor(19500));
     expect(lineAmount(null, 30)).toBeNull();
+  });
+});
+
+describe('parseTugrik', () => {
+  it('таслал, зай, ₮-тэй бичлэгийг уншиж, хоосныг null болгоно', () => {
+    expect(parseTugrik('25,000')).toBe(tugrikToMinor(25000));
+    expect(parseTugrik(' 25 000₮ ')).toBe(tugrikToMinor(25000));
+    expect(parseTugrik('')).toBeNull();
+  });
+
+  it('сөрөг, бутархай, үсэгтэйг буруу гэж үзнэ', () => {
+    expect(parseTugrik('-5')).toBeUndefined();
+    expect(parseTugrik('12.5')).toBeUndefined();
+    expect(parseTugrik('abc')).toBeUndefined();
   });
 });

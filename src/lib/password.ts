@@ -4,6 +4,9 @@ import { promisify } from 'node:util';
 const scryptAsync = promisify(scrypt) as (pw: string, salt: Buffer, len: number) => Promise<Buffer>;
 const KEY_LENGTH = 64;
 
+/** Админы нууц үгийн доод урт */
+export const MIN_PASSWORD = 6;
+
 /** «salt:hash» (hex) хэлбэрээр hash-лана. */
 export async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16);

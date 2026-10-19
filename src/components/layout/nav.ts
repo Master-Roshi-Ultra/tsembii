@@ -12,6 +12,8 @@ export const LEGAL_LINKS = [
   { href: '/terms', key: 'terms' },
 ] as const;
 
+export const ADMIN_LINK = '/admin';
+
 /** Сошиал хуудсууд; холбоос хоосон бол хөлд харагдахгүй. */
 export const SOCIAL_LINKS = [
   { label: 'Facebook', href: 'https://www.facebook.com/forexideamongolia' },

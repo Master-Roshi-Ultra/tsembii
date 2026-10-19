@@ -144,8 +144,130 @@ p {
   background: rgb(255 255 255 / 0.08);
 }
 
+.btn:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.btn-danger {
+  border-color: var(--color-danger);
+  background: transparent;
+  color: var(--color-danger);
+}
+
+.btn-danger:hover {
+  background: #fbeceb;
+}
+
+/* ── Маягт ── */
+.stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.row > .field {
+  flex: 1 1 180px;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-card);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.input:focus {
+  border-color: var(--color-text);
+  outline: none;
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-text);
+}
+
+.notice {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: #eef6ee;
+  color: #24572a;
+  font-size: 0.9375rem;
+}
+
+.notice-error {
+  background: #fbeceb;
+  color: var(--color-danger);
+}
+
+.card {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 0 var(--space-6);
   }
+}
+
+.btn-small {
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  font-size: 0.875rem;
+}
+
+/* Дэлгэц уншигчид л харагдана */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
