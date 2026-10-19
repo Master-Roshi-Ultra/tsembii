@@ -1,3 +1,4 @@
+import { Logo } from '@/components/ui/Logo';
 import styles from './home.module.css';
 
 const NAV = [
@@ -11,8 +12,8 @@ export function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.headerInner}`}>
-        <a href="#top" className={styles.logo}>
-          Цэмбий
+        <a href="#top" className={styles.logoLink} aria-label="Цэмбий — нүүр">
+          <Logo />
         </a>
         <nav aria-label="Үндсэн цэс" className={styles.nav}>
           {NAV.map((item) => (
