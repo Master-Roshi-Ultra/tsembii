@@ -9,6 +9,7 @@ export const en: Dictionary = {
   },
   nav: {
     label: 'Main menu',
+    language: 'Language',
     home: 'Tsembii — home',
     services: 'Services',
     prices: 'Prices',
@@ -66,7 +67,6 @@ export const en: Dictionary = {
     social: 'Social',
     rights: 'Tsembii. All rights reserved.',
     poweredBy: 'Powered by',
-    language: 'Language',
   },
   legal: {
     updated: 'Last updated',

@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
 import { getDictionary } from '@/i18n';
 import { telHref } from '@/lib/public-data';
-import { LanguageSwitch } from './LanguageSwitch';
 import styles from './SiteFooter.module.css';
 import { BUILDER, LEGAL_LINKS, NAV, SOCIAL_LINKS } from './nav';
 
@@ -87,7 +86,6 @@ export async function SiteFooter({ phones, services }: { phones: string[]; servi
             © {new Date().getFullYear()} {t.footer.rights}
           </p>
           <div className={styles.bottomLinks}>
-            <LanguageSwitch />
             {LEGAL_LINKS.map((link) => (
               <FooterLinkItem key={link.href} href={link.href} label={t.legal[link.key].title} />
             ))}

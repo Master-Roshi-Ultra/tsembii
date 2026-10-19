@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
 import { getDictionary } from '@/i18n';
+import { LanguageSwitch } from './LanguageSwitch';
 import styles from './SiteHeader.module.css';
 import { NAV } from './nav';
 
@@ -19,6 +20,7 @@ export async function SiteHeader() {
             </Link>
           ))}
         </nav>
+        <LanguageSwitch />
       </div>
     </header>
   );

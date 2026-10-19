@@ -8,6 +8,7 @@ export const mn = {
   },
   nav: {
     label: 'Үндсэн цэс',
+    language: 'Хэл сонгох',
     home: 'Цэмбий — нүүр',
     services: 'Үйлчилгээ',
     prices: 'Үнэ',
@@ -65,7 +66,6 @@ export const mn = {
     social: 'Сошиал',
     rights: 'Цэмбий. Бүх эрх хуулиар хамгаалагдсан.',
     poweredBy: 'Powered by',
-    language: 'Хэл сонгох',
   },
   legal: {
     updated: 'Сүүлд шинэчилсэн',
