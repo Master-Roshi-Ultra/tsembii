@@ -144,3 +144,72 @@
     padding: var(--space-8) var(--space-8) var(--space-16);
   }
 }
+
+/* ── Хүснэгт ── */
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.table th,
+.table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table th {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+.truncate {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.statusNEW {
+  background: #000;
+  color: #fff;
+}
+
+.statusCONFIRMED {
+  background: #f3e6c8;
+}
+
+.statusDONE {
+  background: #e3f1e4;
+}
+
+.statusCANCELLED {
+  color: var(--color-muted);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: minmax(120px, auto) 1fr;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+}
+
+.details dt {
+  color: var(--color-muted);
+}
+
+.details dd {
+  margin: 0;
+}
