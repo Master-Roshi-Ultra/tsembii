@@ -83,16 +83,18 @@
   padding-bottom: var(--space-16);
 }
 
+/* Утсанд 32–36px, компьютерт 60–64px */
 .hero h1 {
-  font-size: clamp(2.25rem, 9vw, 4rem);
+  color: #fcfcfc;
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-size: clamp(32px, 8.5vw, 36px);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .hero h1 span {
-  background: var(--gradient-gold);
-  background-clip: text;
-  color: transparent;
+  color: #eccc89;
 }
 
 .heroLead {
@@ -424,6 +426,10 @@
     gap: var(--space-6);
     padding-top: 112px;
     padding-bottom: 112px;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 5vw, 64px);
   }
 
   .heroLead {
