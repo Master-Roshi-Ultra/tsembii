@@ -39,7 +39,7 @@ npm run dev                   # http://localhost:3100
 ## Railway-д нийтлэх
 
 Нэг project-д 2 service: **app** (энэ repo) ба **PostgreSQL**. Тохиргоо `railway.json`-д:
-build — `npm run build`, start — `prisma migrate deploy && next start`, healthcheck — `/api/health`.
+build — `npm run build`, start — `prisma migrate deploy && prisma db seed && next start`, healthcheck — `/api/health`.
 
 1. Railway → **New Project** → **Deploy from GitHub repo** → энэ repo.
 2. Project-д **Database → PostgreSQL** нэмнэ.
@@ -49,9 +49,9 @@ build — `npm run build`, start — `prisma migrate deploy && next start`, heal
    - `UPLOAD_DIR` = `/data/uploads`
    - `VERIFYMN_API_KEY` — verify.mn Developer Console-оос (хоосон бол баталгаажуулалт ажиллахгүй)
    - `SEED_OWNER_EMAIL`, `SEED_OWNER_PASSWORD`, `SEED_OWNER_NAME` — эхний админ
-5. Deploy дууссаны дараа эхний админ ба тохиргоог үүсгэнэ (нэг удаа):
-   `railway run npm run db:seed` (эсвэл service-ийн **Shell**-д `npm run db:seed`).
-   Дараа нь `SEED_OWNER_PASSWORD`-ийг Variables-аас устгана.
+5. Deploy хийгдэх бүрт `prisma migrate deploy` ба seed ажиллана. Seed нь зөвхөн анх удаа
+   холбоо барих мэдээлэл, эхний 4 үйлчилгээ, бүрэн эрхтэй админыг (`SEED_OWNER_*`-ээр) үүсгэнэ.
+   Админ нэвтэрсний дараа `SEED_OWNER_PASSWORD`-ийг Variables-аас устгана.
 6. **Settings → Networking → Custom Domain**: домэйнээ нэмж, DNS-д заасан CNAME бичлэгийг
    оруулна. HTTPS сертификатыг Railway автоматаар олгоно.
 
