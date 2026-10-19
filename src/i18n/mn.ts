@@ -37,6 +37,11 @@ export const mn = {
     onRequest: 'Үнэ тохирно',
   },
   units: { SQM: 'м²', PIECE: 'ширхэг', SEAT: 'суудал' },
+  reels: {
+    title: 'Reels',
+    lead: 'Бидний ажлын богино бичлэгүүд.',
+    frame: 'Reel бичлэг',
+  },
   works: {
     title: 'Ажлын үр дүн',
     lead: 'Бидний хийсэн ажлын өмнөх ба дараах зураг.',

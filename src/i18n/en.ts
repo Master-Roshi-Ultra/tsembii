@@ -38,6 +38,11 @@ export const en: Dictionary = {
     onRequest: 'Price on request',
   },
   units: { SQM: 'm²', PIECE: 'pc', SEAT: 'seat' },
+  reels: {
+    title: 'Reels',
+    lead: 'Short videos of our work.',
+    frame: 'Reel video',
+  },
   works: {
     title: 'Our work',
     lead: 'Before and after photos of our work.',
