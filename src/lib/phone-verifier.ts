@@ -22,7 +22,7 @@ const API = 'https://api.verify.mn';
 const TIMEOUT_MS = 10_000;
 
 /** Verify.mn: хэрэглэгч кодыг өөрийн дугаараас 144773 руу SMS-ээр илгээнэ. */
-class VerifyMn implements PhoneVerifier {
+export class VerifyMn implements PhoneVerifier {
   readonly isTest = false;
   constructor(private readonly apiKey: string) {}
 
