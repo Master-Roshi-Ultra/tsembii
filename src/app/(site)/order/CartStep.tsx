@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState, useTransition } from 'react';
 import { type CartItem, isValidQuantity, type Quote, UNIT_STEP } from '@/lib/cart';
 import { removeFromCart, setCartQuantity } from '@/lib/cart-store';
-import { formatPrice } from '@/lib/money';
+import { formatEstimate, formatPrice } from '@/lib/money';
 import styles from './order.module.css';
 import type { OrderTexts, UnitLabels } from './texts';
 
@@ -129,7 +129,13 @@ export function CartStep({
 
       <div className={`card ${styles.total}`}>
         <p>
-          {t.total}: <strong>{formatPrice(quote.total)}</strong>
+          {t.total}:{' '}
+          <strong>
+            {formatEstimate(
+              quote.lines.map((line) => line.amount),
+              onRequest,
+            )}
+          </strong>
         </p>
         {quote.hasUnpriced && <p className="muted">{t.unpricedNote}</p>}
         <p className="muted">{t.estimateNote}</p>
