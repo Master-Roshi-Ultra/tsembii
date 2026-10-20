@@ -58,6 +58,35 @@ export const en: Dictionary = {
       { title: 'Enter address and send', text: 'We will contact you to agree on price and time.' },
     ],
   },
+  track: {
+    title: 'Check your order',
+    lead: 'Enter your phone number and the request number shown after sending to see its progress.',
+    phone: 'Phone number',
+    number: 'Request number',
+    submit: 'Check',
+    loading: 'Checking…',
+    sentAt: 'Sent',
+    statuses: {
+      NEW: {
+        label: 'Received',
+        text: 'We have received your request. Our staff will contact you soon to agree on price and time.',
+      },
+      CONFIRMED: {
+        label: 'Confirmed',
+        text: 'Price and time are agreed. Our staff will arrive at the agreed time.',
+      },
+      DONE: { label: 'Completed', text: 'The job is done. Thank you for choosing us!' },
+      CANCELLED: {
+        label: 'Cancelled',
+        text: 'This order was cancelled. Please contact us if you have any questions.',
+      },
+    },
+    errors: {
+      invalid: 'Enter your 8-digit phone number and request number.',
+      not_found: 'Order not found. Please check your phone and request number.',
+      limit: 'Too many attempts. Please try again in 10 minutes.',
+    },
+  },
   contact: {
     title: 'Contact',
     phone: 'Phone',
