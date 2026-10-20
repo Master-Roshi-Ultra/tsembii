@@ -1,6 +1,7 @@
 import { Contact } from '@/components/home/Contact';
 import { Hero } from '@/components/home/Hero';
 import { OrderSteps } from '@/components/home/OrderSteps';
+import { OrderTrack } from '@/components/home/OrderTrack';
 import { Prices } from '@/components/home/Prices';
 import { Reels } from '@/components/home/Reels';
 import { Services } from '@/components/home/Services';
@@ -12,6 +13,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero image={settings?.heroImage ?? null} />
+      <OrderTrack />
       <Services services={services} />
       <Prices services={services} />
       <Works works={works} />
