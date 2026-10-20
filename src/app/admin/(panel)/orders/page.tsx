@@ -3,7 +3,8 @@ import { PageHeader } from '@/components/admin/PageHeader';
 import { requireAdmin } from '@/lib/auth';
 import { formatUbDateTime } from '@/lib/dates';
 import { db } from '@/lib/db';
-import { formatPrice } from '@/lib/money';
+import { formatEstimate } from '@/lib/money';
+import { mn } from '@/i18n/mn';
 import styles from '../../admin.module.css';
 import { isOrderStatus, ORDER_STATUSES, orderSearchWhere, STATUS_LABELS } from './status';
 
@@ -37,10 +38,9 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
         number: true,
         phone: true,
         address: true,
-        total: true,
         status: true,
         createdAt: true,
-        _count: { select: { items: true } },
+        items: { select: { amount: true } },
       },
     }),
     db.order.count({ where }),
@@ -100,8 +100,11 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
                   <td>{order.phone}</td>
                   <td className={styles.truncate}>{order.address}</td>
                   <td>
-                    {formatPrice(order.total)}
-                    <span className="muted"> · {order._count.items} мөр</span>
+                    {formatEstimate(
+                      order.items.map((item) => item.amount),
+                      mn.prices.onRequest,
+                    )}
+                    <span className="muted"> · {order.items.length} мөр</span>
                   </td>
                   <td>
                     <span className={`badge ${styles[`status${order.status}`]}`}>

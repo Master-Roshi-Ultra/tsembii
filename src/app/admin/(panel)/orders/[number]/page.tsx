@@ -7,7 +7,7 @@ import { mn } from '@/i18n/mn';
 import { requireAdmin } from '@/lib/auth';
 import { formatUbDateTime } from '@/lib/dates';
 import { db } from '@/lib/db';
-import { formatPrice } from '@/lib/money';
+import { formatEstimate, formatPrice } from '@/lib/money';
 import styles from '../../../admin.module.css';
 import { updateOrderAction } from '../actions';
 import { STATUS_LABELS } from '../status';
@@ -21,8 +21,6 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ num
     include: { items: { orderBy: { id: 'asc' } } },
   });
   if (!order) notFound();
-
-  const hasUnpriced = order.items.some((item) => item.unitPrice === null);
 
   return (
     <div className="stack">
@@ -82,8 +80,13 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ num
           </table>
         </div>
         <p>
-          Урьдчилсан дүн: <strong>{formatPrice(order.total)}</strong>
-          {hasUnpriced && <span className="muted"> + «Үнэ тохирно» үйлчилгээ</span>}
+          Урьдчилсан дүн:{' '}
+          <strong>
+            {formatEstimate(
+              order.items.map((item) => item.amount),
+              mn.prices.onRequest,
+            )}
+          </strong>
         </p>
       </section>
 

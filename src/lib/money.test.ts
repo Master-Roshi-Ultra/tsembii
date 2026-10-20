@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatPrice, lineAmount, parseTugrik, tugrikToMinor } from './money';
+import { formatEstimate, formatPrice, lineAmount, parseTugrik, tugrikToMinor } from './money';
 
 describe('money', () => {
   it('мөнгийг төгрөгөөр харуулна', () => {
@@ -23,5 +23,23 @@ describe('parseTugrik', () => {
     expect(parseTugrik('-5')).toBeUndefined();
     expect(parseTugrik('12.5')).toBeUndefined();
     expect(parseTugrik('abc')).toBeUndefined();
+  });
+});
+
+describe('formatEstimate', () => {
+  const onRequest = 'Үнэ тохирно';
+
+  it('үнэтэй мөр байхгүй бол 0₮ биш «Үнэ тохирно»', () => {
+    expect(formatEstimate([null, null], onRequest)).toBe(onRequest);
+    expect(formatEstimate([], onRequest)).toBe(onRequest);
+  });
+
+  it('үнэтэй мөрүүдийг нэмж, үнэгүй мөр байвал тэмдэглэнэ', () => {
+    expect(formatEstimate([tugrikToMinor(1000), tugrikToMinor(500)], onRequest)).toMatch(
+      /^1.500₮$/,
+    );
+    expect(formatEstimate([tugrikToMinor(1000), null], onRequest)).toMatch(
+      /^1.000₮ \+ Үнэ тохирно$/,
+    );
   });
 });

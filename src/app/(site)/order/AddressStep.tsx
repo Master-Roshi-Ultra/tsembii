@@ -2,7 +2,7 @@
 
 import { type FormEvent, useState, useTransition } from 'react';
 import type { Quote } from '@/lib/cart';
-import { formatPrice } from '@/lib/money';
+import { formatEstimate, formatPrice } from '@/lib/money';
 import { type OrderError, submitOrderAction } from './actions';
 import styles from './order.module.css';
 import { fill, formatPhone, formatQuantity, type OrderTexts, type UnitLabels } from './texts';
@@ -73,7 +73,13 @@ export function AddressStep({
           ))}
         </ul>
         <p>
-          {t.cart.total}: <strong>{formatPrice(quote.total)}</strong>
+          {t.cart.total}:{' '}
+          <strong>
+            {formatEstimate(
+              quote.lines.map((line) => line.amount),
+              onRequest,
+            )}
+          </strong>
         </p>
         <p className="notice">{fill(t.phone.verified, { phone: formatPhone(phone) })}</p>
       </div>
